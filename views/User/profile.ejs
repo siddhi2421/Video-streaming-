@@ -1,0 +1,132 @@
+<% layout("/layouts/userboilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    .profile-card {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+    .icon-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+    .icon {
+      color: #fff;
+      margin-right: 10px;
+    }
+    .value {
+      font-size: 1.1rem; /* Reduced size for values */
+      margin-left: 35px;
+    }
+    .separator {
+      border-top: 1px solid #555;
+      margin: 15px 0;
+    }
+    .btn-edit {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      width: 100%; /* Full width */
+      height: 50px; /* Increased height */
+      font-size: 1.25rem; /* Larger font size */
+    }
+    .btn-edit:hover {
+      background-color: #444;
+      color: #fff;
+    }
+    .text-center{
+        margin-bottom: 5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="profile-card mx-auto col-md-6">
+      <h1 class="text-center"></i>Profile Page</h1>
+
+      <!-- Name -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-user icon"></i> Name
+        </div>
+        <div class="value"><%= user.name %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-envelope icon"></i> Email
+        </div>
+        <div class="value"><%= user.email %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Age -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-calendar-alt icon"></i> Age
+        </div>
+        <div class="value"><%= user.age %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-map-marker-alt icon"></i> Address
+        </div>
+        <div class="value"><%= user.address %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Phone Number -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-phone icon"></i> Phone Number
+        </div>
+        <div class="value">+91 <%= user.phoneNumber %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Bio -->
+      <div>
+        <div class="icon-title">
+          <i class="fas fa-info-circle icon"></i> Bio
+        </div>
+        <div class="value"><%= user.bio %></div>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Edit Button -->
+      <div class="text-center mt-4">
+        <a href="/profile/edit" class="btn btn-edit"><i class="fas fa-edit icon"></i> Edit Profile</a>
+      </div>
+      <!-- Add the button to show watch history -->
+
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+

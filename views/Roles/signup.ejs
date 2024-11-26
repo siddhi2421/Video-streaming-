@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* background: linear-gradient(to right, #8B0000, #800000);  */
+            /* background: linear-gradient(to bottom, #067985, #022d41) center / cover no-repeat; */
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 30rem; /* Default width for larger screens */
+            max-width: 100%; /* Ensures it doesn't exceed the screen width */
+        }
+
+        /* Responsive adjustment */
+        @media (max-width: 576px) {
+            .form-container {
+                width: 90%; /* Adjust width for mobile devices */
+            }
+        }
+
+        /* Button-4 styles */
+        .button-4 {
+            background-image: linear-gradient(to right, #B24592 0%, #F15F79 51%, #B24592 100%);
+            background-size: 200% auto;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .button-4:hover {
+            background-position: right center;
+            transform: translateY(-0.25em);
+            color: white;
+            box-shadow: 0 10px 9px -3px #6f061961;
+        }
+
+        .button-4:active {
+            transform: translateY(0);
+            box-shadow: unset;
+        }
+        .styled-link {
+          color: #F15F79;
+          font-family: 'Poppins', sans-serif;
+          text-decoration: none;
+          align-items: center;
+          text-align: center;
+        }
+        .styled-link:hover{
+          color: #F15F79;
+          font-family: 'Poppins', sans-serif;
+          text-decoration: none;
+          align-items: center;
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif;">Signup</h2>
+        <form id="signupForm" action="/signup" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <select name="role" class="form-control">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" id="age" name="age" placeholder="Age" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="address" class="form-control" placeholder="Address">
+          </div>
+          <div class="form-group">
+              <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+          </div>
+          <div class="form-group">
+            <textarea name="bio" class="form-control" placeholder="Short Bio"></textarea>
+          </div>
+            <button type="submit" class="btn button-4 w-100 btn-block">Sign Up</button>
+            <a href="/login" class="styled-link ">Already Have Account? Login</a>
+
+
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone').value;
+
+            // Validate age to be exactly 2 digits
+            const agePattern = /^\d{2}$/;
+            if (!agePattern.test(age)) {
+                alert('Age must be exactly 2 digits.');
+                return false;
+            }
+
+            // Validate phone number to be exactly 10 digits
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Phone number must be exactly 10 digits.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

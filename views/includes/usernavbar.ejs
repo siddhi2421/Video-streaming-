@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-black shadow-sm pb-5">
+  <div class="container-fluid ps-3 pe-3">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <a
+        class="navbar-brand d-flex align-items-center fw-bold text-uppercase text-white"
+        href="/dashboard"
+      >
+        <i class="fa-regular fa-compass me-2"></i> StreamSphere
+      </a>
+      <div class="navbar-nav ms-auto">
+        <a
+          class="btn fw-semibold rounded-2 me-2 bg-black text-white border border-white"
+          href="/profile"
+          onmouseover="this.classList.add('bg-white', 'text-black', 'border-black'); this.classList.remove('bg-black', 'text-white', 'border-white');"
+          onmouseout="this.classList.add('bg-black', 'text-white', 'border-white'); this.classList.remove('bg-white', 'text-black', 'border-black');"
+        >
+          View Profile
+        </a>
+        <!-- Logout Button with Hover Effect -->
+        <a
+          class="btn fw-semibold rounded-2 bg-white text-black border border-white"
+          href="/logout"
+          onmouseover="this.classList.add('bg-danger', 'text-white', 'border-white'); this.classList.remove('bg-white', 'text-black', 'border-white');"
+          onmouseout="this.classList.add('bg-white', 'text-black', 'border-white'); this.classList.remove('bg-danger', 'text-white', 'border-white');"
+        >
+          Logout
+        </a>
+      </div>
+      <!-- User Info -->
+      <div
+        class="user-info ms-3 d-none d-md-flex align-items-center text-white"
+      >
+        <i class="fa-solid fa-user me-2 text-white"></i>
+        <span class="text-uppercase text-white"><%= user.name %></span>
+      </div>
+    </div>
+  </div>
+</nav>

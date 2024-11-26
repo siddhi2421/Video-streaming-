@@ -1,0 +1,244 @@
+<% layout("/layouts/boilerplate") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #000000;
+          color: white;
+      }
+  
+      .videos-section {
+          padding: 30px;
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 25px;
+      }
+  
+      .card {
+          width: 30%; /* Default width for larger screens */
+          background-color: white;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: rgba(255, 255, 255, 0.5) 0px 20px 30px -10px;
+          transition: transform 0.2s, box-shadow 0.2s;
+          color: black;
+          padding: 10px;
+          margin: 10px;
+      }
+  
+      .card:hover {
+          transform: scale(1.05);
+          box-shadow: rgba(255, 255, 255, 0.7) 0px 25px 35px -10px;
+      }
+  
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          overflow: hidden;
+      }
+  
+      .video-wrapper video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+  
+      .custom-controls {
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          right: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 5px 10px;
+          border-radius: 5px;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+      }
+  
+      .video-wrapper:hover .custom-controls {
+          opacity: 1;
+      }
+  
+      .control-btn {
+          color: white;
+          cursor: pointer;
+          font-size: 1.2rem;
+          margin: 0 5px;
+      }
+  
+      .seek-bar {
+          flex: 1;
+          margin: 0 10px;
+      }
+  
+      .seek-bar input {
+          width: 100%;
+      }
+  
+      .time-display {
+          color: white;
+          font-size: 0.9rem;
+      }
+  
+      .card-body {
+          text-align: center;
+          padding: 15px;
+      }
+  
+      .card-title {
+          font-size: 1.2rem;
+          font-weight: bold;
+      }
+  
+      .card-text {
+          margin: 10px 0;
+      }
+  
+      .btn {
+          display: inline-block;
+          padding: 8px 15px;
+          border: 2px solid black;
+          border-radius: 4px;
+          background-color: white;
+          color: black;
+          text-decoration: none;
+          font-weight: bold;
+          transition: all 0.3s ease;
+      }
+  
+      .btn:hover {
+          background-color: black;
+          color: white;
+      }
+  
+      /* Responsive design adjustments */
+      @media (max-width: 1200px) {
+          .card {
+              width: 45%; /* Two cards per row on medium screens */
+          }
+      }
+  
+      @media (max-width: 768px) {
+          .card {
+              width: 100%; /* One card per row on small screens */
+          }
+  
+          .videos-section {
+              padding: 20px;
+          }
+  
+          .card-body {
+              padding: 10px;
+          }
+      }
+  </style>
+  
+  
+  
+</head>
+<body>
+    <header class="text-center bg-black text-white py-4 ps-3 pe-3">
+        <div class="welcome-section">
+          <h1 class="display-4 fw-bold">Welcome to StreamSphere</h1>
+          <h4 class="fw-light">
+            Manage your platform efficiently with ultimate control tools.
+          </h4>
+        </div>
+      </header>
+    <section class="videos-section">
+        <% videos.forEach(video => { %>
+        <div class="card">
+            <div class="video-wrapper">
+                <video id="video-<%= video._id %>" src="<%= video.videoUrl %>" muted></video>
+                <div class="custom-controls">
+                    <i class="fa fa-play control-btn play-btn" data-video-id="video-<%= video._id %>"></i>
+                    <div class="seek-bar">
+                        <input type="range" min="0" max="100" value="0" class="seek-slider" data-video-id="video-<%= video._id %>">
+                    </div>
+                    <span class="time-display">00:00 / 00:00</span>
+                    <i class="fa fa-volume-up control-btn volume-btn"></i>
+                    <i class="fa fa-expand control-btn fullscreen-btn"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= video.title %></h5>
+                <p class="card-text"><%= video.description %></p>
+                <a href="/videos/<%= video._id %>" class="btn">Learn More</a>
+            </div>
+        </div>
+        <% }) %>
+    </section>
+
+    <script>
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoId = btn.dataset.videoId;
+                const video = document.getElementById(videoId);
+                if (video.paused) {
+                    video.play();
+                    btn.classList.replace('fa-play', 'fa-pause');
+                } else {
+                    video.pause();
+                    btn.classList.replace('fa-pause', 'fa-play');
+                }
+            });
+        });
+
+        document.querySelectorAll('.seek-slider').forEach(slider => {
+            slider.addEventListener('input', () => {
+                const videoId = slider.dataset.videoId;
+                const video = document.getElementById(videoId);
+                const seekTime = (slider.value / 100) * video.duration;
+                video.currentTime = seekTime;
+            });
+
+            slider.addEventListener('change', () => {
+                const videoId = slider.dataset.videoId;
+                const video = document.getElementById(videoId);
+                slider.value = (video.currentTime / video.duration) * 100;
+            });
+        });
+
+        document.querySelectorAll('.fullscreen-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoWrapper = btn.closest('.video-wrapper');
+                if (videoWrapper.requestFullscreen) {
+                    videoWrapper.requestFullscreen();
+                }
+            });
+        });
+
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('timeupdate', () => {
+                const slider = document.querySelector(`.seek-slider[data-video-id="${video.id}"]`);
+                const timeDisplay = video.closest('.video-wrapper').querySelector('.time-display');
+                slider.value = (video.currentTime / video.duration) * 100;
+
+                const current = formatTime(video.currentTime);
+                const duration = formatTime(video.duration);
+                timeDisplay.textContent = `${current} / ${duration}`;
+            });
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>

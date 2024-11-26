@@ -1,0 +1,155 @@
+<% layout("/layouts/userboilerplate") %>
+<div class="container-fluid bg-black text-white vh-400 d-flex justify-content-center align-items-center">
+  <div class="row w-100 justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form
+        action="/profile/edit"
+        method="POST"
+        enctype="multipart/form-data"
+        class="p-4 rounded shadow needs-validation"
+        novalidate
+      >
+        <h1 class="mb-5 text-center">Edit Profile</h1>
+
+        <!-- Title Field -->
+        <div class="mb-4">
+          <label for="title" class="form-label">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="title"
+            class="form-control"
+            placeholder="Enter Your Name"
+            value="<%= user.name %>"
+            required
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+        <div class="mb-4">
+          <label for="title" class="form-label">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="title"
+            class="form-control"
+            placeholder="Enter Email"
+            value="<%= user.email %>"
+            readonly
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+        <div class="mb-4">
+          <label for="title" class="form-label">Age</label>
+          <input
+            type="number"
+            name="age"
+            id="title"
+            class="form-control"
+            placeholder="Enter Age"
+            value="<%= user.age %>"
+            required
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+        <div class="mb-4">
+          <label for="title" class="form-label">Address</label>
+          <input
+            type="text"
+            name="address"
+            id="title"
+            class="form-control"
+            placeholder="Enter Address"
+            value="<%= user.address %>"
+            required
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+        <div class="mb-4">
+          <label for="title" class="form-label">Phone Number</label>
+          <input
+            type="number"
+            name="phoneNumber"
+            id="title"
+            class="form-control"
+            placeholder="Enter Phone Number"
+            value="<%= user.phoneNumber %>"
+            required
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Bio</label>
+          <textarea
+            name="bio"
+            id="description"
+            class="form-control"
+            rows="4"
+            placeholder="Enter at least 30 words"
+            required
+            minlength="30"
+          ><%= user.bio %></textarea>
+          <div class="invalid-feedback">
+            Please provide a description with at least 30 words.
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-custom w-100 border-0">
+          <i class="fas fa-user-edit me-2"></i>Update Profile
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: black;
+    color: white;
+  }
+  .form-label {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  form {
+    background-color: rgb(223, 223, 223);
+    color: black;
+  }
+  .btn-custom {
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    height: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-custom:hover {
+    background-color: green;
+    color: white;
+  }
+</style>
+
+<script>
+  // Enable Bootstrap validation styles
+  (function () {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+

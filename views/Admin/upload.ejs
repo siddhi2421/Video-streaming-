@@ -1,0 +1,123 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container-fluid bg-black text-white vh-100 d-flex justify-content-center align-items-center">
+  <div class="row w-100 justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form
+        action="/upload"
+        method="POST"
+        enctype="multipart/form-data"
+        class=" p-4 rounded shadow needs-validation"
+        novalidate
+      >
+        <h1 class="mb-5 text-center">Upload New Video</h1>
+
+        <!-- Title Field -->
+        <div class="mb-4 mt-5">
+          <label for="title" class="form-label ">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="form-control"
+            placeholder="Enter video title"
+            required
+          />
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="mb-3 mt-4">
+          <label for="description" class="form-label ">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            class="form-control"
+            rows="4"
+            placeholder="Enter at least 30 words"
+            required
+            minlength="30"
+          ></textarea>
+          <div class="invalid-feedback">
+            Please provide a description with at least 30 words.
+          </div>
+        </div>
+
+        <!-- Video File Field -->
+        <div class="mb-5 mt-4">
+          <label for="videoFile" class="form-label">Video File</label>
+          <input
+            type="file"
+            name="videoFile"
+            id="videoFile"
+            class="form-control"
+            accept="video/*"
+            required
+          />
+          <div class="invalid-feedback">Please upload a video file.</div>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- <button type="submit" class="btn btn-light w-100 border-0">
+          Upload
+        </button> -->
+        <button type="submit" class="btn btn-custom w-100 border-0">
+          <i class="fa-solid fa-cloud-arrow-up"></i> &nbsp; Upload Video
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Button hover effect */
+  .btn-light:hover {
+    background-color: green;
+    color: white;
+    border: 3px solid white;
+  }
+  form{
+    background-color: rgb(223, 223, 223);
+    color: black;
+  }
+  h1{
+    font-weight: 600;
+  }
+  .form-label{
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .btn-custom {
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    height: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-custom:hover {
+    background-color: green;
+    color: white;
+  }
+</style>
+
+<script>
+  // Enable Bootstrap validation styles
+  (function () {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
+
